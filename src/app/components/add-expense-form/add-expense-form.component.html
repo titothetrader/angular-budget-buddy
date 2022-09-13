@@ -1,0 +1,81 @@
+<div>
+  <form (ngSubmit)="submitNewExpense(newExpenseForm)" #newExpenseForm="ngForm">
+    <div class="form-input">
+      <label for="amount">Amount:</label>
+      <input
+        type="number"
+        id="amount"
+        name="amount"
+        [(ngModel)]="newExpense.amount"
+        required
+        min="0"
+        #amount="ngModel"
+      />
+
+      <div
+        class="alert"
+        *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+      >
+        <div *ngIf="amount.errors?.['required']">Amount is required.</div>
+        <div *ngIf="amount.errors?.['min']">
+          Amount must be a positive number.
+        </div>
+      </div>
+    </div>
+    <div class="form-input">
+      <label for="description">Description:</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        [(ngModel)]="newExpense.description"
+        required
+        minlength="3"
+        #description="ngModel"
+      />
+
+      <div
+        class="alert"
+        *ngIf="
+          description.invalid && (description.dirty || description.touched)
+        "
+      >
+        <div *ngIf="description.errors?.['required']">
+          Description is required.
+        </div>
+        <div *ngIf="description.errors?.['minlength']">
+          Description must be at least 3 characters.
+        </div>
+      </div>
+    </div>
+    <div class="form-input">
+      <label for="category">Category:</label>
+      <select
+        type="number"
+        id="category"
+        name="category"
+        [(ngModel)]="newExpense.category"
+        required
+        #category="ngModel"
+      >
+        <option value="">Select a category...</option>
+        <option>Food</option>
+        <option>Clothing</option>
+        <option>Bills</option>
+        <option>Entertainment</option>
+      </select>
+
+      <div
+        class="alert"
+        *ngIf="category.invalid && (category.dirty || category.touched)"
+      >
+        <div *ngIf="category.errors?.['required']">Category is required.</div>
+      </div>
+    </div>
+    <div class="form-input">
+      <button type="submit" [disabled]="newExpenseForm.invalid">
+        Add Expense
+      </button>
+    </div>
+  </form>
+</div>
