@@ -11,7 +11,6 @@ export class BudgetService {
     { category: 'Travel', description: 'Maryland', amount: 450 },
     { category: 'Fun', description: 'RHCP Concert', amount: 100 },
   ];
-
   
 
   private _totalExpense = new BehaviorSubject(0);
